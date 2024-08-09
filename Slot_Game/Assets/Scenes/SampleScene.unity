@@ -1173,7 +1173,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reelStrip: {fileID: 924218787}
-  rotationSpeed: 100
+  moveSpeed: 50
+  moveDuration: 3
+  bouncyIntensity: 10
+  rotateButton: {fileID: 1116603022}
+  customStopPositions:
+  - 50
+  - 4
+  - 57
+  - 80
+  - 90
 --- !u!1 &992665276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,15 +2300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85ab207fd772e94a8da3a5e57ac271e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reelHeight: 5
-  symbolMoveDuration: 0.2
-  symbolPrefabs:
-  - {fileID: 5987612057218731954}
-  - {fileID: 3886787580071759046}
-  - {fileID: 204817163742114370}
-  - {fileID: 1386742139256665596}
-  - {fileID: 1182194299}
-  currentSymbols: []
 --- !u!224 &1980168342 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2263286336666872427, guid: aa115b7e6c2ec11478148b57bb973dc9, type: 3}
