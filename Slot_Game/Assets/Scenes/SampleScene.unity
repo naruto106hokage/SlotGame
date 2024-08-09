@@ -979,7 +979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &866457046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1107,6 +1107,7 @@ GameObject:
   - component: {fileID: 924218786}
   - component: {fileID: 924218787}
   - component: {fileID: 924218788}
+  - component: {fileID: 924218789}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1182,6 +1183,21 @@ MonoBehaviour:
   - 57
   - 80
   - 90
+--- !u!114 &924218789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924218785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc1159b2ac6d8f40bebf62f54decdb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reelStrip: {fileID: 0}
+  winText: {fileID: 866457047}
+  winningLineCount: 3
 --- !u!1 &992665276
 GameObject:
   m_ObjectHideFlags: 0
