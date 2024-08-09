@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LeanTween; // Make sure LeanTween is properly included
 
 public class SlotGame : MonoBehaviour
 {
     public ReelStrip reelStrip;
     public float moveSpeed = 50f;  // Speed at which the symbols move
     public float moveDuration = 3f; // Duration for the entire movement
-    public float bouncyIntensity = 1f; // Intensity of the bouncy effect
+    public float bouncyIntensity = 10f; // Intensity of the bouncy effect
     private bool isMoving = false;
 
     private void Start()
@@ -33,7 +32,6 @@ public class SlotGame : MonoBehaviour
         // Start a LeanTween tween for each reel
         foreach (var reel in reelStrip.reels)
         {
-            // Use LeanTween to move each reel
             RectTransform rectTransform = reel.GetComponent<RectTransform>();
 
             if (rectTransform == null)
@@ -45,6 +43,7 @@ public class SlotGame : MonoBehaviour
             Vector3 startPosition = rectTransform.localPosition;
             Vector3 endPosition = new Vector3(startPosition.x, startPosition.y - (reelStrip.distanceBetweenSymbols * reelStrip.symbolsToCreate), startPosition.z);
 
+            // Move each reel using LeanTween
             LTDescr tween = LeanTween.moveLocalY(rectTransform.gameObject, endPosition.y, moveDuration)
                 .setEase(LeanTweenType.easeInOutQuad) // Smooth easing function
                 .setOnComplete(() => OnReelStop(rectTransform.gameObject)); // Trigger bouncy effect on completion
@@ -63,15 +62,19 @@ public class SlotGame : MonoBehaviour
 
     private void OnReelStop(GameObject reel)
     {
-        // Apply bouncy effect when the reel stops
         RectTransform rectTransform = reel.GetComponent<RectTransform>();
         if (rectTransform != null)
         {
-            LeanTween.moveLocalY(rectTransform.gameObject, rectTransform.localPosition.y + bouncyIntensity, 0.5f)
-                .setEase(LeanTweenType.easeBounceOut)
+            Vector3 originalPosition = rectTransform.localPosition;
+            Vector3 bouncePosition = originalPosition + new Vector3(0, bouncyIntensity, 0);
+
+            // Apply a bouncy effect when the reel stops
+            LeanTween.moveLocalY(rectTransform.gameObject, bouncePosition.y, 0.2f)
+                .setEase(LeanTweenType.easeOutQuad)
                 .setOnComplete(() =>
                 {
-                    // Optional: Further actions after bouncy effect completion
+                    LeanTween.moveLocalY(rectTransform.gameObject, originalPosition.y, 0.3f)
+                        .setEase(LeanTweenType.easeInQuad);
                 });
         }
     }
