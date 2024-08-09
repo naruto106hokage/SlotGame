@@ -1268,7 +1268,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reelStrip: {fileID: 924218787}
   winIndicator: {fileID: 991612577}
+  spinButton: {fileID: 1116603022}
   winningLineCount: 3
+  testWinIndicator: 1
 --- !u!1 &991612577
 GameObject:
   m_ObjectHideFlags: 0
