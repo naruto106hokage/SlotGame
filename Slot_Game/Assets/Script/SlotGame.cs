@@ -87,14 +87,14 @@ public class SlotGame : MonoBehaviour
             float endPositionY = startPosition.y - reelHeight;
 
             // Calculate the stop position
-            float stopPositionY = GetCustomStopPosition(rectTransform);
+            float stopPositionY = customStopPositions.Count > 0 ? GetCustomStopPosition(rectTransform) : endPositionY;
 
             // Move each reel using LeanTween
             LTDescr tween = LeanTween.moveLocalY(rectTransform.gameObject, endPositionY, moveDuration)
                 .setEase(LeanTweenType.easeInOutQuad) // Smooth easing function
-                .setOnComplete(() => 
+                .setOnComplete(() =>
                 {
-                    // Correct the final position to the custom stop position
+                    // Correct the final position to the custom stop position (or end position if no custom stop)
                     LeanTween.moveLocalY(rectTransform.gameObject, stopPositionY, 0.2f)
                         .setEase(LeanTweenType.easeInOutQuad)
                         .setOnComplete(() => OnReelStop(rectTransform.gameObject)); // Apply bouncy effect
